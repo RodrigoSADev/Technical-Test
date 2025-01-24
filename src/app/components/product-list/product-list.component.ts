@@ -7,6 +7,7 @@ import { IProduct } from '../../interfaces/product.interface';
 import { ProductService } from '../../services/product.service';
 import { AddProductComponent } from '../add-product/add-product.component';
 import { DeleteDialogComponent } from '../delete-dialog/delete-dialog.component';
+import { EditDialogComponent } from '../edit-dialog/edit-dialog.component';
 
 @Component({
   selector: 'app-product-list',
@@ -37,9 +38,24 @@ export class ProductListComponent implements OnInit {
     this.router.navigate(['/product', product.id]);
   }
 
+  onEdit(product: IProduct) {
+    const dialogRef = this.dialog.open(EditDialogComponent, {
+      width: '800px',
+      data: { ...product },
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.products = this.products.map((p) =>
+          p.id === product.id ? result : p
+        );
+      }
+    });
+  }
+
   onDelete(id: number) {
     const dialogRef = this.dialog.open(DeleteDialogComponent, {
-      width: '250px',
+      width: '500px',
       data: { id },
     });
 
