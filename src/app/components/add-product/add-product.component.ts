@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, inject, Output } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import {
   FormArray,
   FormBuilder,
@@ -30,8 +30,6 @@ import { ProductService } from '../../services/product.service';
   styleUrl: './add-product.component.scss',
 })
 export class AddProductComponent {
-  @Output() productAdded = new EventEmitter<IResponseProduct>();
-
   formBuilder = inject(FormBuilder);
   productService = inject(ProductService);
 
@@ -80,7 +78,6 @@ export class AddProductComponent {
       this.productService.addProduct(product).subscribe({
         next: (response) => {
           this.addForm.reset();
-          this.productAdded.emit(response);
         },
         error: (error) => {
           console.error('Error adding product:', error);
