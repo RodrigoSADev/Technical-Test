@@ -2,7 +2,6 @@ import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import {
   FormArray,
-  // FormArray,
   FormBuilder,
   ReactiveFormsModule,
   Validators,
@@ -12,7 +11,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
-import { IProduct } from '../../interfaces/product.interface';
+import { IResponseProduct } from '../../interfaces/product.interface';
 import { ProductService } from '../../services/product.service';
 
 @Component({
@@ -75,9 +74,9 @@ export class AddProductComponent {
           backlog: any;
           customProperties: { key: string; value: string }[];
         };
-      } as unknown as IProduct;
+      } as unknown as IResponseProduct;
       this.productService.addProduct(product).subscribe({
-        next: (response) => {
+        next: () => {
           this.addForm.reset();
         },
         error: (error) => {
