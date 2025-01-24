@@ -4,10 +4,11 @@ import { MatTableModule } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { IProduct } from '../../interfaces/product.interface';
 import { ProductService } from '../../services/product.service';
+import { AddProductComponent } from '../add-product/add-product.component';
 
 @Component({
   selector: 'app-product-list',
-  imports: [MatTableModule, MatButtonModule],
+  imports: [MatTableModule, MatButtonModule, AddProductComponent],
   templateUrl: './product-list.component.html',
   styleUrl: './product-list.component.scss',
 })
