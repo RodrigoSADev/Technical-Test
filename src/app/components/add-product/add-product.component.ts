@@ -41,7 +41,7 @@ export class AddProductComponent {
     profile: this.formBuilder.group({
       type: ['furniture'],
       available: [true],
-      backlog: [null],
+      backlog: [0],
       customProperties: this.formBuilder.array([]),
     }),
   });

@@ -30,12 +30,12 @@
       </mat-select>
     </mat-form-field>
 
-    <mat-checkbox formControlName="available">Available</mat-checkbox>
-
     <mat-form-field>
       <mat-label>Backlog</mat-label>
       <input formControlName="backlog" matInput type="number" />
     </mat-form-field>
+
+    <mat-checkbox formControlName="available">Available</mat-checkbox>
 
     <div formArrayName="customProperties">
       <div
@@ -60,5 +60,11 @@
     </div>
   </div>
 
-  <button (click)="onAddProduct()" mat-raised-button>Add Product</button>
+  <button
+    (click)="onAddProduct()"
+    mat-raised-button
+    [disabled]="!addForm.valid"
+  >
+    Add Product
+  </button>
 </form>
