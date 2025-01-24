@@ -1,0 +1,10 @@
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-key-value {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
