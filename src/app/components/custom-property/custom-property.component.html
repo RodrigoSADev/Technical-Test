@@ -1,0 +1,27 @@
+@if (parentForm) {
+<div [formGroup]="parentForm">
+  <div formArrayName="customProperties">
+    <div
+      class="form-key-value"
+      *ngFor="let customProp of customProperties.controls; let i = index"
+      [formGroupName]="i"
+    >
+      <mat-form-field>
+        <mat-label>Key</mat-label>
+        <input formControlName="key" matInput required />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Value</mat-label>
+        <input formControlName="value" matInput required />
+      </mat-form-field>
+      <button type="button" (click)="removeCustomProperty(i)" mat-button>
+        Remove
+      </button>
+    </div>
+  </div>
+
+  <button type="button" (click)="addCustomProperty()" mat-button>
+    Add Custom Property
+  </button>
+</div>
+}
