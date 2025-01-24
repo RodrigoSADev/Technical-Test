@@ -1,6 +1,28 @@
-# TechnicalTest
+# Technical Test
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.0.2.
+
+## Overview
+
+The test involves writing a simple Angular frontend application to a REST web service that manages a collection of products for an online store.
+
+## Requirements
+
+1. The application will have a login screen where a user will be required to enter a single authorization key, of any length but not an empty string.
+2. When an authorization key is entered, the application will retrieve the current list of products from the web service, using the entered authorization key as a bearer authorization token in an HTTP “Authorization” header (i.e. the content of the “Authorization” header should be “Bearer <token>”). The application will then show a table containing the list of products, showing the index, SKU, name, and price of each product.
+3. The application will allow the user to click on a product listing to see its description and details.
+4. The application will allow the user to modify the product list and will submit any modifications to the web service using the CRUD REST convention. The following modifications are allowed:
+   - Delete existing products, but will require a confirmation for each delete action using a secondary dialog. To delete a product the application will use the DELETE verb.
+   - The application will allow the user to create a new product listing entry by entering a new product’s name, description, SKU, cost, and properties. To create a product the application will use the POST verb.
+   - The application will allow the user to edit existing products to change their name, description, cost, and properties, but not SKU. To edit a product the application will use the PATCH verb.
+5. When editing/creating a product, the application’s product editor will have these features:
+   - Edit the product’s text fields: name and description.
+   - Edit the product’s cost, setting it to any positive value with up to 2 decimal points.
+   - Edit 3 properties that will be stored as a key-value set in the product’s object’s profile field, expressed as the correct JSON data type for each property. The editors for these fields shall be implemented as a web component:
+     - “type” - a string value that can be one of the following values: “furniture”, “equipment”, “stationary”, or “part”. This will be represented as a drop-down list to choose from. The default value if the property is unset is “furniture”.
+     - “available” - a boolean value. This will be represented as a checkbox. The default value if the property is unset is true.
+     - “backlog” - an integer value. This will be represented as a spin box. The default value if the property is unset is that this property is not set.
+   - Edit custom properties - stored in the item objects’ profile field - using a dynamic key-value editor that allows the user to add a new key and value as strings, change existing values (but not keys), and delete existing key-value pairs. The editor shall be implemented as a web component.
 
 ## Development server
 
@@ -12,20 +34,6 @@ ng serve
 
 Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
 
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
 ## Building
 
 To build the project run:
@@ -35,25 +43,3 @@ ng build
 ```
 
 This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
