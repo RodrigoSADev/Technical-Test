@@ -1,22 +1,24 @@
-@if (product) {
-<mat-card appearance="outlined">
-  <mat-card-header>
-    <mat-card-title>{{ product.name }}</mat-card-title>
-    <mat-card-subtitle>{{ product.description }}</mat-card-subtitle>
-  </mat-card-header>
-  <mat-card-content>
-    <p>SKU: {{ product.sku }}</p>
-  </mat-card-content>
-  <mat-card-content>
-    <p>
-      {{ product.cost | currency }}
-    </p>
-  </mat-card-content>
-  <mat-card-content>
-    <p>Type: {{ product.profile.type }}</p>
-  </mat-card-content>
-  <mat-card-actions>
-    <button routerLink="/products" mat-button>Back</button>
-  </mat-card-actions>
-</mat-card>
+@if (product && product.profile) {
+<section class="container">
+  <mat-card appearance="outlined">
+    <mat-card-header>
+      <mat-card-title>{{ product.name }}</mat-card-title>
+      <mat-card-subtitle>{{ product.description }}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <p>SKU: {{ product.sku }}</p>
+    </mat-card-content>
+    <mat-card-content>
+      <p>Price: {{ product.cost | currency }}</p>
+    </mat-card-content>
+    <mat-card-content>
+      <p>Type: {{ product.profile.type }}</p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button routerLink="/products" mat-button>Back</button>
+    </mat-card-actions>
+  </mat-card>
+</section>
+} @else {
+<h1 class="title">No Product Found</h1>
 }

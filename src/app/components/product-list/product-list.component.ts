@@ -20,15 +20,18 @@ export class ProductListComponent implements OnInit {
   router = inject(Router);
   dialog = inject(MatDialog);
   products: IProduct[] = [];
+  hasError: boolean = false;
   showModal: boolean = false;
   displayedColumns: string[] = ['index', 'sku', 'name', 'price', 'actions'];
 
   ngOnInit() {
     this.productService.getProducts().subscribe({
       next: (response) => {
+        console.log(response);
         this.products = response;
       },
       error: (error) => {
+        this.hasError = true;
         console.error('Error fetching products:', error);
       },
     });

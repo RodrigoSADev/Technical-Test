@@ -1,5 +1,7 @@
 <app-add-product />
 
+@if (!hasError) {
+<h1 class="title">List of Products</h1>
 <table mat-table [dataSource]="this.products" class="mat-elevation-z8">
   <ng-container matColumnDef="index">
     <th mat-header-cell *matHeaderCellDef>Index</th>
@@ -33,3 +35,6 @@
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
 </table>
+} @else {
+<h1 class="title">No Products Found</h1>
+}
