@@ -49,7 +49,7 @@ export class EditDialogComponent implements OnInit {
   ngOnInit(): void {
     this.editForm = this.formBuilder.group({
       id: [this.data.id],
-      sku: [this.data.sku],
+      sku: [{ value: this.data.sku, disabled: true }],
       name: [this.data.name, [Validators.required]],
       description: [this.data.description, [Validators.required]],
       cost: [

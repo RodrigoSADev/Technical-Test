@@ -19,22 +19,32 @@ export class ProductListComponent implements OnInit {
   productService = inject(ProductService);
   router = inject(Router);
   dialog = inject(MatDialog);
-  products: IProduct[] = [];
+
+  products = this.productService.products;
   hasError: boolean = false;
   showModal: boolean = false;
   displayedColumns: string[] = ['index', 'sku', 'name', 'price', 'actions'];
 
   ngOnInit() {
+    this.loadProducts();
+  }
+
+  loadProducts() {
     this.productService.getProducts().subscribe({
-      next: (response) => {
-        console.log(response);
-        this.products = response;
-      },
       error: (error) => {
         this.hasError = true;
         console.error('Error fetching products:', error);
       },
     });
+    // this.productService.getProducts().subscribe({
+    //   next: (response) => {
+    //     this.products = response;
+    //   },
+    //   error: (error) => {
+    //     this.hasError = true;
+    //     console.error('Error fetching products:', error);
+    //   },
+    // });
   }
 
   onView(product: IProduct) {
@@ -49,11 +59,17 @@ export class ProductListComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        this.products = this.products.map((p) =>
-          p.id === product.id ? result : p
-        );
+        this.productService.updateProduct(result).subscribe();
       }
     });
+
+    // dialogRef.afterClosed().subscribe((result) => {
+    //   if (result) {
+    //     this.products = this.products.map((p) =>
+    //       p.id === product.id ? result : p
+    //     );
+    //   }
+    // });
   }
 
   onDelete(id: number) {
@@ -64,17 +80,23 @@ export class ProductListComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        this.productService.deleteProduct(id).subscribe({
-          next: () => {
-            this.products = this.products.filter(
-              (product) => product.id !== id
-            );
-          },
-          error: (error) => {
-            console.error('Error deleting product:', error);
-          },
-        });
+        this.productService.deleteProduct(id).subscribe();
       }
     });
+
+    // dialogRef.afterClosed().subscribe((result) => {
+    //   if (result) {
+    //     this.productService.deleteProduct(id).subscribe({
+    //       next: () => {
+    //         this.products = this.products.filter(
+    //           (product) => product.id !== id
+    //         );
+    //       },
+    //       error: (error) => {
+    //         console.error('Error deleting product:', error);
+    //       },
+    //     });
+    //   }
+    // });
   }
 }
