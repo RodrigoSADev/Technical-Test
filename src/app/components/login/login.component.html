@@ -1,0 +1,7 @@
+<form [formGroup]="form" (ngSubmit)="onLogin()">
+  <mat-form-field>
+    <mat-label>Authorization Key</mat-label>
+    <input formControlName="authorization" matInput required />
+  </mat-form-field>
+  <button (click)="onLogin()" mat-raised-button>Login</button>
+</form>
