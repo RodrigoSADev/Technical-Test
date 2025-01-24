@@ -55,14 +55,11 @@
         </button>
       </div>
     </div>
-    <button
-      type="button"
-      (click)="addCustomProperty()"
-      mat-button
-      *ngIf="customProperties"
-    >
+    @if (customProperties) {
+    <button type="button" (click)="addCustomProperty()" mat-button>
       Add Custom Property
     </button>
+    }
   </div>
 
   <mat-dialog-actions>
