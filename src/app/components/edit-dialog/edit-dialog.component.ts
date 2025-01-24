@@ -20,6 +20,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { IResponseProduct } from '../../interfaces/product.interface';
+import { CustomPropertyComponent } from '../custom-property/custom-property.component';
 
 @Component({
   selector: 'app-edit-dialog',
@@ -35,6 +36,7 @@ import { IResponseProduct } from '../../interfaces/product.interface';
     MatCheckboxModule,
     ReactiveFormsModule,
     CommonModule,
+    CustomPropertyComponent,
   ],
   templateUrl: './edit-dialog.component.html',
   styleUrl: './edit-dialog.component.scss',
@@ -78,15 +80,11 @@ export class EditDialogComponent implements OnInit {
     return this.editForm.get('profile.customProperties') as FormArray;
   }
 
-  addCustomProperty() {
-    const customProp = this.formBuilder.group({
-      key: ['', Validators.required],
-      value: ['', Validators.required],
-    });
-    this.customProperties.push(customProp);
-  }
-
-  removeCustomProperty(index: number) {
-    this.customProperties.removeAt(index);
+  get profileForm(): FormGroup {
+    const profile = this.editForm.get('profile');
+    if (!profile || !(profile instanceof FormGroup)) {
+      throw new Error('Profile form is not a FormGroup');
+    }
+    return profile;
   }
 }

@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import {
-  FormArray,
   FormBuilder,
+  FormGroup,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
@@ -13,6 +13,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { IResponseProduct } from '../../interfaces/product.interface';
 import { ProductService } from '../../services/product.service';
+import { CustomPropertyComponent } from '../custom-property/custom-property.component';
 
 @Component({
   selector: 'app-add-product',
@@ -25,6 +26,7 @@ import { ProductService } from '../../services/product.service';
     MatButtonModule,
     ReactiveFormsModule,
     CommonModule,
+    CustomPropertyComponent,
   ],
   templateUrl: './add-product.component.html',
   styleUrl: './add-product.component.scss',
@@ -45,22 +47,6 @@ export class AddProductComponent {
       customProperties: this.formBuilder.array([]),
     }),
   });
-
-  get customProperties(): FormArray {
-    return this.addForm.get('profile.customProperties') as FormArray;
-  }
-
-  addCustomProperty() {
-    const customProp = this.formBuilder.group({
-      key: ['', Validators.required],
-      value: ['', Validators.required],
-    });
-    this.customProperties.push(customProp);
-  }
-
-  removeCustomProperty(index: number) {
-    this.customProperties.removeAt(index);
-  }
 
   onAddProduct() {
     if (this.addForm.valid) {
@@ -84,5 +70,13 @@ export class AddProductComponent {
         },
       });
     }
+  }
+
+  get profileForm(): FormGroup {
+    const profile = this.addForm.get('profile');
+    if (!profile || !(profile instanceof FormGroup)) {
+      throw new Error('Profile form is not a FormGroup');
+    }
+    return profile;
   }
 }
