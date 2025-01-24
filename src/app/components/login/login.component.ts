@@ -22,13 +22,13 @@ export class LoginComponent {
   router = inject(Router);
   authService = inject(AuthService);
 
-  form = this.formBuilder.group({
+  loginForm = this.formBuilder.group({
     authorization: ['', [Validators.required]],
   });
 
   onLogin() {
-    if (this.form.valid) {
-      const authKey = this.form.get('authorization')!.value;
+    if (this.loginForm.valid) {
+      const authKey = this.loginForm.get('authorization')!.value;
       if (authKey) {
         this.authService.setAuthKey(authKey);
       }
