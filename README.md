@@ -24,15 +24,39 @@ The test involves writing a simple Angular frontend application to a REST web se
      - “backlog” - an integer value. This will be represented as a spin box. The default value if the property is unset is that this property is not set.
    - Edit custom properties - stored in the item objects’ profile field - using a dynamic key-value editor that allows the user to add a new key and value as strings, change existing values (but not keys), and delete existing key-value pairs. The editor shall be implemented as a web component.
 
-## Development server
+## How to Run the Project
 
-To start a local development server, run:
+### Clone the Repository
+
+First, clone the repository to your local machine:
+
+```bash
+git clone https://github.com/RodrigoSADev/Technical-Test.git
+```
+
+Navigate to the project directory:
+
+```bash
+cd technical-test
+```
+
+### Install Dependencies
+
+Install the project dependencies using npm:
+
+```bash
+npm install
+```
+
+### Start the Development Server
+
+Start the development server:
 
 ```bash
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
 
 ## Building
 
