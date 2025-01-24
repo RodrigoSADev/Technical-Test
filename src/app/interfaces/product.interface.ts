@@ -14,6 +14,6 @@ export interface IResponseProduct extends IProduct {
     type: 'furniture' | 'equipment' | 'stationary' | 'part';
     available: boolean;
     backlog?: number;
-    customProperties: { [key: string]: string };
+    customProperties: { key: string; value: string }[];
   };
 }
