@@ -4,6 +4,9 @@ export interface IProduct {
   name: string;
   description: string;
   cost: number;
+  profile: {
+    type: 'furniture' | 'equipment' | 'stationary' | 'part';
+  };
 }
 
 export interface IResponseProduct extends IProduct {
