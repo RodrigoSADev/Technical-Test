@@ -24,6 +24,13 @@ The test involves writing a simple Angular frontend application to a REST web se
      - “backlog” - an integer value. This will be represented as a spin box. The default value if the property is unset is that this property is not set.
    - Edit custom properties - stored in the item objects’ profile field - using a dynamic key-value editor that allows the user to add a new key and value as strings, change existing values (but not keys), and delete existing key-value pairs. The editor shall be implemented as a web component.
 
+## Stack Used
+- Angular
+- TypeScript
+- RxJS
+- Angular Material
+- SCSS
+
 ## How to Run the Project
 
 ### Clone the Repository
