@@ -40,6 +40,7 @@ export class CustomPropertyComponent {
     const customProp = this.formBuilder.group({
       key: ['', Validators.required],
       value: ['', Validators.required],
+      isNew: [true],
     });
     this.customProperties.push(customProp);
   }
