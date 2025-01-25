@@ -57,27 +57,4 @@ export class ProductService {
         )
       );
   }
-
-  // getProducts(): Observable<IProduct[]> {
-  //   return this.http.get<IProduct[]>(this.apiUrl);
-  // }
-
-  // getProductById(id: string): Observable<IProduct> {
-  //   return this.http.get<IProduct>(`${this.apiUrl}/${id}`);
-  // }
-
-  // addProduct(product: IResponseProduct): Observable<IResponseProduct> {
-  //   return this.http.post<IResponseProduct>(this.apiUrl, product);
-  // }
-
-  // updateProduct(product: IResponseProduct): Observable<IResponseProduct> {
-  //   return this.http.patch<IResponseProduct>(
-  //     `${this.apiUrl}/${product.id}`,
-  //     product
-  //   );
-  // }
-
-  // deleteProduct(id: number): Observable<IProduct> {
-  //   return this.http.delete<IProduct>(`${this.apiUrl}/${id}`);
-  // }
 }

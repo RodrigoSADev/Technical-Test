@@ -28,7 +28,6 @@ export class CustomPropertyComponent {
 
   @Input() parentForm!: FormGroup;
 
-  // Garantimos que `customProperties` é um FormArray.
   get customProperties(): FormArray {
     const customPropertiesControl = this.parentForm.get('customProperties');
     if (customPropertiesControl instanceof FormArray) {
@@ -48,57 +47,4 @@ export class CustomPropertyComponent {
   removeCustomProperty(index: number) {
     this.customProperties.removeAt(index);
   }
-
-  // @Input() parentForm!: FormGroup;
-
-  // get customProperties(): FormArray {
-  //   return (
-  //     (this.parentForm?.get('customProperties') as FormArray) ||
-  //     this.formBuilder.array([])
-  //   );
-  // }
-
-  // addCustomProperty() {
-  //   const customProp = this.formBuilder.group({
-  //     key: ['', Validators.required],
-  //     value: ['', Validators.required],
-  //   });
-  //   this.customProperties.push(customProp);
-  // }
-
-  // removeCustomProperty(index: number) {
-  //   this.customProperties.removeAt(index);
-  // }
-
-  // @Input() parentForm!: FormGroup;
-
-  // get customProperties(): FormArray {
-  //   return this.parentForm.get('customProperties') as FormArray;
-  // }
-
-  // addCustomProperty() {
-  //   const customProp = this.formBuilder.group({
-  //     key: ['', Validators.required],
-  //     value: ['', Validators.required],
-  //   });
-  //   this.customProperties.push(customProp);
-  // }
-
-  // removeCustomProperty(index: number) {
-  //   this.customProperties.removeAt(index);
-  // }
-
-  // @Input() customProperties!: FormArray;
-
-  // addCustomProperty() {
-  //   const customProp = this.formBuilder.group({
-  //     key: ['', Validators.required],
-  //     value: ['', Validators.required],
-  //   });
-  //   this.customProperties.push(customProp);
-  // }
-
-  // removeCustomProperty(index: number) {
-  //   this.customProperties.removeAt(index);
-  // }
 }
