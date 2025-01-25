@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import {
+  FormArray,
   FormBuilder,
   FormGroup,
   ReactiveFormsModule,
@@ -13,7 +14,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { IResponseProduct } from '../../interfaces/product.interface';
 import { ProductService } from '../../services/product.service';
-import { CustomPropertyComponent } from '../custom-property/custom-property.component';
+import { ProfileEditorComponent } from '../profile-editor/profile-editor.component';
 
 @Component({
   selector: 'app-add-product',
@@ -26,7 +27,7 @@ import { CustomPropertyComponent } from '../custom-property/custom-property.comp
     MatButtonModule,
     ReactiveFormsModule,
     CommonModule,
-    CustomPropertyComponent,
+    ProfileEditorComponent,
   ],
   templateUrl: './add-product.component.html',
   styleUrl: './add-product.component.scss',
@@ -43,7 +44,7 @@ export class AddProductComponent {
     profile: this.formBuilder.group({
       type: ['furniture'],
       available: [true],
-      backlog: [0],
+      backlog: [0, [Validators.required, Validators.pattern(/^[0-9]+$/)]],
       customProperties: this.formBuilder.array([]),
     }),
   });
@@ -62,14 +63,19 @@ export class AddProductComponent {
         };
       } as unknown as IResponseProduct;
       this.productService.addProduct(product).subscribe({
-        next: (response) => {
+        next: () => {
           this.addForm.reset();
+          this.customProperties.clear();
         },
         error: (error) => {
           console.error('Error adding product:', error);
         },
       });
     }
+  }
+
+  get customProperties(): FormArray {
+    return this.addForm.get('profile.customProperties') as FormArray;
   }
 
   get profileForm(): FormGroup {

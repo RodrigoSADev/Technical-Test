@@ -23,33 +23,14 @@
       </mat-form-field>
     </div>
 
-    <div formGroupName="profile">
-      <div class="form-group">
-        <mat-form-field>
-          <mat-label>Type</mat-label>
-          <mat-select formControlName="type">
-            <mat-option value="furniture">Furniture</mat-option>
-            <mat-option value="equipment">Equipment</mat-option>
-            <mat-option value="stationary">Stationary</mat-option>
-            <mat-option value="part">Part</mat-option>
-          </mat-select>
-        </mat-form-field>
-
-        <mat-form-field>
-          <mat-label>Backlog</mat-label>
-          <input formControlName="backlog" matInput type="number" />
-        </mat-form-field>
-
-        <mat-checkbox formControlName="available">Available</mat-checkbox>
-      </div>
-
-      <app-custom-property [parentForm]="profileForm"></app-custom-property>
+    <div formGroupName="profile" class="form-group">
+      <app-profile-editor [parentForm]="profileForm"></app-profile-editor>
     </div>
 
     <button
       (click)="onAddProduct()"
       mat-raised-button
-      [disabled]="!addForm.valid"
+      [disabled]="!addForm.valid || !profileForm.valid"
     >
       Add Product
     </button>
