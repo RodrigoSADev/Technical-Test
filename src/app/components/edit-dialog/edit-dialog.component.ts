@@ -20,7 +20,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { IResponseProduct } from '../../interfaces/product.interface';
-import { CustomPropertyComponent } from '../custom-property/custom-property.component';
+import { ProfileEditorComponent } from '../profile-editor/profile-editor.component';
 
 @Component({
   selector: 'app-edit-dialog',
@@ -36,7 +36,7 @@ import { CustomPropertyComponent } from '../custom-property/custom-property.comp
     MatCheckboxModule,
     ReactiveFormsModule,
     CommonModule,
-    CustomPropertyComponent,
+    ProfileEditorComponent,
   ],
   templateUrl: './edit-dialog.component.html',
   styleUrl: './edit-dialog.component.scss',
@@ -68,6 +68,7 @@ export class EditDialogComponent implements OnInit {
                 this.formBuilder.group({
                   key: [prop.key, Validators.required],
                   value: [prop.value, Validators.required],
+                  isNew: [false],
                 })
               )
             : []
